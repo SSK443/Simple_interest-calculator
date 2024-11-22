@@ -17,7 +17,14 @@ function App() {
 
   // function of reset button
   const handleReset=()=>{
-    
+    setInterset(0)
+    setPrincipal(0)
+    setRate(0)
+    setTime(0)
+    setPrincipalInvalid(true)
+    setRateInvalid(true)
+    setTimeInvalid(true)
+
   }
   const handleValidation=(tag)=>{
     console.log(tag);
@@ -56,7 +63,13 @@ function App() {
     
   }
 
-
+  const handleCalculate=()=>{
+    if(principal&&rate&&time){
+setInterset(principal*rate*time/100)
+    }else{
+      alert("please fill the fill completely")
+    }
+  }
 
 
   return (
@@ -81,7 +94,7 @@ function App() {
             {!timeinvalid &&<div className='mt-1 text-left p-1'><p className='text-red-600'>* Invalid user data</p></div>}
 
             <div className='w-[300px] h-fit flex justify-center gap-2 items-center' >
-              <Button className='w-[150px]  h-[50px] ' variant="contained" disabled={!principalinvalid || !rateinvalid || !timeinvalid }>Calculate</Button>
+              <Button className='w-[150px]  h-[50px] ' variant="contained" disabled={!principalinvalid || !rateinvalid || !timeinvalid } onClick={()=>handleCalculate()}>Calculate</Button>
               <Button className='w-[150px] h-[50px] ' variant="outlined" onClick={()=>handleReset()}>Reset</Button></div>
           </form>
 
